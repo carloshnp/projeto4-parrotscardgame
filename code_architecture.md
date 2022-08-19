@@ -4,8 +4,9 @@
 - isso é um teste
 - isso é outro teste
 
-```
-isso é um teste de código aaa
+```mermaid
+flowchart LR
+A ----> B
 ```
 
 Isso é mais um teste.
