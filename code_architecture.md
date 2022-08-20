@@ -8,27 +8,27 @@
 - Fim: quando todos os pares são encontrados, o jogo acaba e o timer para; o jogo exibe quantas jogadas foram realizadas e a duração da rodada. O jogador é perguntado se quer continuar jogando ou não. Se sim, o jogo volta para o início.
 
 ```mermaid
-flowchart  TB
+flowchart LR
     subgraph início
         A([Início]) --> B{Quantas \n cartas?}
     end
     subgraph jogo
         direction LR
         C[Cartas \n viradas]
-        C-->D{Clique}
+        C-->D{"Clique \n (2 cartas)"}
         D-->E[Cartas \n pareadas]
         D-->F[Cartas \n não-pareadas]
         E-->G[Cartas \n não viram]
-        F-->C
+        F-->|vira cartas \n clicadas|C
     end
     subgraph verifica
-        I{Todas as cartas \n foram pareadas?}
+        I{"Todas as cartas \n foram pareadas? \n (viradas)"}
     end
     subgraph final
         direction LR
         K{Deseja \n continuar \n jogando?}
         K-->|não|L([Fim])
-        K-->|sim|M([Início])
+        K-->|sim|M[Reiniciar \n jogo]
     end
     início-->jogo
     jogo-->verifica
