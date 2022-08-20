@@ -7,10 +7,33 @@
 - O jogo: as cartas iniciam todas viradas para baixo; a cada clique, a carta vira, e o jogador pode virar outra carta; se as cartas forem iguais, elas permanecem viradas para cima; se não, elas viram para baixo; apenas duas cartas podem estar viradas para cima (além dos pares que ja foram encontrados); Cada clique configura uma jogada; Um timer é iniciado a cada rodada.
 - Fim: quando todos os pares são encontrados, o jogo acaba e o timer para; o jogo exibe quantas jogadas foram realizadas e a duração da rodada. O jogador é perguntado se quer continuar jogando ou não. Se sim, o jogo volta para o início.
 
-
 ```mermaid
-flowchart LR
-A ----> B
+flowchart  TB
+    subgraph início
+        A([Início]) --> B{Quantas \n cartas?}
+    end
+    subgraph jogo
+        direction LR
+        C[Cartas \n viradas]
+        C-->D{Clique}
+        D-->E[Cartas \n pareadas]
+        D-->F[Cartas \n não-pareadas]
+        E-->G[Cartas \n não viram]
+        F-->C
+    end
+    subgraph verifica
+        I{Todas as cartas \n foram pareadas?}
+    end
+    subgraph final
+        direction LR
+        K{Deseja \n continuar \n jogando?}
+        K-->|não|L([Fim])
+        K-->|sim|M([Início])
+    end
+    início-->jogo
+    jogo-->verifica
+    verifica-->|não|jogo
+    verifica-->|sim|final
 ```
 
 Isso é mais um teste.
