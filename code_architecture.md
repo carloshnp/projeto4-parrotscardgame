@@ -16,8 +16,9 @@ flowchart LR
         direction LR
         C[Cartas \n viradas]
         C-->D{"Clique \n (2 cartas)"}
-        D-->E[Cartas \n pareadas]
-        D-->F[Cartas \n não-pareadas]
+        D-->Z[Desvira cartas]
+        Z-->E[Cartas \n pareadas]
+        Z-->F[Cartas \n não-pareadas]
         E-->G[Cartas \n não viram]
         F-->|vira cartas \n clicadas|C
     end
