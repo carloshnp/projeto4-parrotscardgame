@@ -2,7 +2,7 @@ let numeroCartas;
 let parrotsCardsShuffled;
 let cartasPareadas = [];
 let cartasSelecionadas = [];
-let cartasClicadas = 0;
+let cartasClicadas = [];
 let total = 0;
 let jogadas = 0;
 let statusJogo;
@@ -62,7 +62,7 @@ function iniciarJogo() {
     let ul = document.querySelector('ul');
     for (let i=0; i < parrotsCardsShuffled.length; i++) {
         ul.innerHTML += `
-            <li class="teste" onclick="cardClick(this)">
+            <li class="verifica" onclick="cardClick(this)">
             <img class='carta hidden' src=${parrotsCardsShuffled[i]}>
             </li>`;
     }
@@ -70,41 +70,46 @@ function iniciarJogo() {
 }
 
 function fim() {
-    let element = document.querySelector('.teste');
+    let element = document.querySelector('.verifica');
     if (element == null) {
-    setTimeout(function() {alert('Teste')}, 500);
+    setTimeout(y => {alert('Teste')}, 500);
     }
 }
 
 function cardClick(cartaClicada) {
-    if (cartasClicadas < 3) {
+    cartasClicadas.push(cartaClicada);
+    console.log(cartasClicadas);
+    if (cartasClicadas.length < 3) {
         cartaClicada.firstElementChild.classList.remove('hidden');
         cartaClicada.classList.add('cartaSelecionada');
-        cartasClicadas++;
         cartasPareadas.push(cartaClicada.firstElementChild.currentSrc);
         total++;
 
-        if (cartasClicadas == 2) {
-            
+        if (cartasClicadas.length === 2) {
+            let element = document.querySelectorAll('.cartaSelecionada');
+
             if (cartasPareadas[cartasPareadas.length -1] == cartasPareadas[cartasPareadas.length -2]) {
-                let element = document.querySelectorAll('.cartaSelecionada');
                 for (let i=0; i < element.length; i++) {
                     element[i].removeAttribute('onclick');
                     element[i].classList.remove('cartaSelecionada');
-                    element[i].classList.remove('teste');
+                    element[i].classList.remove('verifica');
                 }
-                cartasClicadas = 0;
+                cartasClicadas = [];
             }
             else {
-                cartaClicada.firstElementChild.classList.add('hidden');
-                times (2) (() => cartasPareadas.pop());
+                setTimeout(function() {
+                for (let i=0; i < element.length; i++) {
+                    element[i].classList.remove('cartaSelecionada');
+                    element[i].firstElementChild.classList.add('hidden');
+                    times (2) (() => cartasPareadas.pop());
+                    }
+                cartasClicadas = [];
+                }, 1000);
             }
         }
     }
+
     fim();
 }
-
-
-
 
 inicio();
