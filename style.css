@@ -1,0 +1,53 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #EEF9BF;
+}
+
+main {
+    width: 100%;
+}
+
+h1 {
+    margin: 40px 0px;
+    font-weight: 700;
+    font-size: 56px;
+    color: #75B79E;
+    text-align: center;
+}
+
+ul {
+    height: 360px;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+ul li {
+    width: 117px;
+    height: 146px;
+    margin: 34px;
+    background-color: #A7E9AF;
+    background-image: url('img/front.png');
+    background-size: 90%;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 1px solid #99CEA8;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+li img {
+    width: 100%;
+}
+
+.carta {
+
+}
+
+img.hidden {
+    display: none;
+}
