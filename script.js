@@ -4,6 +4,8 @@ let cartasPareadas = [];
 let cartasSelecionadas = [];
 let cartasClicadas = 0;
 let total = 0;
+let jogadas = 0;
+let statusJogo;
 
 
 const times = x => f => { if (x > 0) { f()
@@ -68,7 +70,10 @@ function iniciarJogo() {
 }
 
 function fim() {
-    setTimeout(alert('Teste'), 500);
+    let element = document.querySelector('.teste');
+    if (element == null) {
+    setTimeout(function() {alert('Teste')}, 500);
+    }
 }
 
 function cardClick(cartaClicada) {
@@ -77,6 +82,7 @@ function cardClick(cartaClicada) {
         cartaClicada.classList.add('cartaSelecionada');
         cartasClicadas++;
         cartasPareadas.push(cartaClicada.firstElementChild.currentSrc);
+        total++;
 
         if (cartasClicadas == 2) {
             
@@ -85,9 +91,9 @@ function cardClick(cartaClicada) {
                 for (let i=0; i < element.length; i++) {
                     element[i].removeAttribute('onclick');
                     element[i].classList.remove('cartaSelecionada');
+                    element[i].classList.remove('teste');
                 }
                 cartasClicadas = 0;
-                total += 2;
             }
             else {
                 cartaClicada.firstElementChild.classList.add('hidden');
@@ -95,11 +101,10 @@ function cardClick(cartaClicada) {
             }
         }
     }
-    if (total === numeroCartas) {
-        total = 0;
-        inicio();
-    }
+    fim();
 }
+
+
 
 
 inicio();
