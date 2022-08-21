@@ -11,8 +11,11 @@ function inicio() {
     while ((numeroCartas > 14 || numeroCartas < 4) || (numeroCartas%2) !== 0) {
         numeroCartas = parseInt(prompt('Insira um número par de cartas entre 4 e 14!'));
     }
-    setInterval(iniciarJogo, 1000);
-    setInterval(cronometro, 1000);
+    iniciarJogo();
+}
+
+function cronometro(){
+    return '';
 }
 
 function iniciarJogo() {
@@ -47,9 +50,24 @@ function iniciarJogo() {
         .map(({ value }) => value);
 
     // Coloca as cartas dos parrots na lista do HTML
-    
+    let ul = document.querySelector('ul');
+    for (let i=0; i < parrotsCardsShuffled.length; i++) {
+        ul.innerHTML += `<li class='.hidden'>${parrotsCardsShuffled[i]}</li>`;
+    }
+    // Inicia o jogo
+    jogo();
 }
 
-function cronometro(){
-
+function jogo() {
+    // Verificar cliques do usuário
+    // Dizer se todas as cartas estão pareadas
+    return '';
 }
+
+function fim() {
+    // Parabéns, você ganhou o jogo em X tempo e Y jogadas!
+    // Deseja jogar novamente?
+    return '';
+}
+
+inicio();
