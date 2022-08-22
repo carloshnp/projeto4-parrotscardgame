@@ -7,7 +7,6 @@ let verificaCartasClicadas = [];
 let total = 0;
 let time;
 
-
 const times = x => f => { if (x > 0) { f()
     times (x - 1) (f) } }
 
@@ -19,7 +18,13 @@ function inicio() {
         numeroCartas = parseInt(prompt('Insira um número par de cartas entre 4 e 14!'));
     }
     let ul = document.querySelector('ul');
+    let main = document.querySelector('main');
+    let widthJogo = ((numeroCartas / 2) * 150);
     ul.innerHTML = '' ;
+    main.style.width = widthJogo + "px";
+    
+
+
     iniciarJogo();
 }
 
@@ -63,7 +68,8 @@ function iniciarJogo() {
     for (let i=0; i < parrotsCardsShuffled.length; i++) {
         ul.innerHTML += `
             <li class="verifica" onclick="cardClick(this)">
-            <img class='carta hidden' src=${parrotsCardsShuffled[i]}>
+            <img class='carta verso' src=${parrotsCardsShuffled[i]}>
+            <img class='carta frente' src=img/front.png>
             </li>`;
     }
     // Inicia o jogo
@@ -93,10 +99,11 @@ function cardClick(cartaClicada) {
     }
     if (verificaCartasClicadas < 3 && cartaClicada.classList.contains('cartaSelecionada') == false) {
         cartasClicadas.push(cartaClicada);
+
         cartaClicada.classList.add('cartaSelecionada');
-        cartaClicada.classList.remove('hide');
         cartaClicada.classList.add('show');
-        cartaClicada.firstElementChild.classList.remove('hidden');
+        cartaClicada.classList.remove('hide');
+
         cartasPareadas.push(cartaClicada.firstElementChild.currentSrc);
         total++;
 
@@ -118,7 +125,6 @@ function cardClick(cartaClicada) {
                     element[i].classList.remove('cartaSelecionada');
                     element[i].classList.remove('show');
                     element[i].classList.add('hide');
-                    element[i].firstElementChild.classList.add('hidden');
                     times (2) (() => cartasPareadas.pop());
                     }
                 cartasClicadas = [];
@@ -132,3 +138,4 @@ function cardClick(cartaClicada) {
 }
 
 inicio();
+
