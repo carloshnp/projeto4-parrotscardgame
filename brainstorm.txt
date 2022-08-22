@@ -1,3 +1,0 @@
-- Adicionar arrays de parrosts no <ul> do HTML como <li>
-- Posicionar o <ul> no centro da página do HTML
-- Dimensionar as cartas dos parrots
