@@ -4,10 +4,24 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
 }
 
-main {
-    width: 100%;
+aside {
+    font-weight: 700;
+    font-size: 20px;
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 100px;
+    height: 30px;
+    background-color: #A7E9AF;
+    border: 1px solid #99CEA8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 10px;
+    box-shadow: -2px 2px 10px #555555;
 }
 
 h1 {
@@ -18,20 +32,23 @@ h1 {
     text-align: center;
 }
 
-ul {
-    height: 360px;
+main {
     width: 100%;
+}
+
+ul {
+    height: auto;
+    width: 100vw;
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: stretch;
+    justify-content: center;
 }
 
 ul li {
     width: 117px;
     height: 146px;
-    margin: 17px 7px;
+    margin: 17px 17px;
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
     border-radius: 5px;
@@ -40,6 +57,7 @@ ul li {
     align-items: center;
     transform-style: preserve-3d;
     position: relative;
+    box-shadow: -4px 4px 10px #555555;
 }
 
 ul li .carta {
@@ -58,7 +76,6 @@ li img {
     transform: rotateY(180deg);
 }
 
-
 .show {
     transform: rotateY(180deg);
     transition: 0.5s;
@@ -67,4 +84,21 @@ li img {
 .hide {
     transform: rotateY(0deg);
     transition: 0.5s;
+}
+
+@media (max-width:600px){
+    h1 {
+        font-size: 36px;
+        line-height: 42px;
+    }
+    main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 150px;
+        height: 100%;
+    }
+    ul {
+        width: 150px;
+    }
 }

@@ -5,7 +5,8 @@ let cartasSelecionadas = [];
 let cartasClicadas = [];
 let verificaCartasClicadas = [];
 let total = 0;
-let time;
+let count;
+let time = 0;
 
 const times = x => f => { if (x > 0) { f()
     times (x - 1) (f) } }
@@ -13,23 +14,22 @@ const times = x => f => { if (x > 0) { f()
 function inicio() {
     // Pergunta para o usuário quantas cartas ele deseja para jogar
     // O número de cartas deve ser par e estar entre 4 e 14
-    numeroCartas = parseInt(prompt('Quantas cartas'));
+    numeroCartas = parseInt(prompt('Bem vindo ao Parrot Card Game! \n Insira um número par de cartas entre 4 e 14 para começar.'));
     while ((numeroCartas > 14 || numeroCartas < 4) || (numeroCartas%2) !== 0) {
         numeroCartas = parseInt(prompt('Insira um número par de cartas entre 4 e 14!'));
     }
-    let ul = document.querySelector('ul');
-    let main = document.querySelector('main');
-    let widthJogo = ((numeroCartas / 2) * 150);
-    ul.innerHTML = '' ;
-    main.style.width = widthJogo + "px";
-    
 
+    
+    let ul = document.querySelector('ul');
+        ul.innerHTML = '' ;
 
     iniciarJogo();
 }
 
 function cronometro(){
-    return '';
+    time++;
+    let cronometro = document.querySelector('.cronometro');
+    cronometro.innerHTML = time + ' s';  
 }
 
 function iniciarJogo() {
@@ -72,6 +72,8 @@ function iniciarJogo() {
             <img class='carta frente' src=img/front.png>
             </li>`;
     }
+
+    count = setInterval(cronometro, 1000);
     // Inicia o jogo
 }
 
@@ -89,7 +91,11 @@ function reiniciarJogo() {
         decisao = prompt('Digite "sim" para continuar jogando.');
     }
     total = 0;
-    let cartasPareadas = [];
+    time = 0;
+    clearInterval(count);
+    let aside = document.querySelector('.cronometro')
+    aside.innerHTML = '0 s';
+    cartasPareadas = [];
     inicio();
 }
 
