@@ -29,8 +29,8 @@ ul li {
     width: 117px;
     height: 146px;
     margin: 34px;
-    background-color: #A7E9AF;
     background-image: url('img/front.png');
+    background-color: #A7E9AF;
     background-size: 90%;
     background-position: center;
     background-repeat: no-repeat;
@@ -41,13 +41,24 @@ ul li {
 }
 
 li img {
-    width: 100%;
+    width: 90%;
 }
 
-.carta {
+.show {
+    transform: rotateY(180deg);
+    transition-duration: 500ms;
+    transform-style: preserve-3d;
+    background-image: none;
+}
 
+
+.hide {
+    transform: rotateY(0deg);
+    transition-duration: 500ms;
+    transform-style: preserve-3d;
 }
 
 img.hidden {
-    display: none;
+    visibility: hidden;
+    transition: visibility 100ms;
 }

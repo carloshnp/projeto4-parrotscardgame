@@ -3,9 +3,9 @@ let parrotsCardsShuffled;
 let cartasPareadas = [];
 let cartasSelecionadas = [];
 let cartasClicadas = [];
+let verificaCartasClicadas = [];
 let total = 0;
-let jogadas = 0;
-let statusJogo;
+let time;
 
 
 const times = x => f => { if (x > 0) { f()
@@ -72,16 +72,31 @@ function iniciarJogo() {
 function fim() {
     let element = document.querySelector('.verifica');
     if (element == null) {
-    setTimeout(y => {alert('Teste')}, 500);
+    setTimeout(y => {alert(`Você ganhou em ${total} jogadas!`)}, 500);
+    setTimeout(y => {reiniciarJogo()}, 500);
     }
 }
 
+function reiniciarJogo() {
+    let decisao = prompt('Deseja continuar jogando? Digite "sim".');
+    while (decisao !== 'sim') {
+        decisao = prompt('Digite "sim" para continuar jogando.');
+    }
+    total = 0;
+    let cartasPareadas = [];
+    inicio();
+}
+
 function cardClick(cartaClicada) {
-    cartasClicadas.push(cartaClicada);
-    console.log(cartasClicadas);
-    if (cartasClicadas.length < 3) {
-        cartaClicada.firstElementChild.classList.remove('hidden');
+    if (cartaClicada.classList.contains('cartaSelecionada') == false) {
+    verificaCartasClicadas++;
+    }
+    if (verificaCartasClicadas < 3 && cartaClicada.classList.contains('cartaSelecionada') == false) {
+        cartasClicadas.push(cartaClicada);
         cartaClicada.classList.add('cartaSelecionada');
+        cartaClicada.classList.remove('hide');
+        cartaClicada.classList.add('show');
+        cartaClicada.firstElementChild.classList.remove('hidden');
         cartasPareadas.push(cartaClicada.firstElementChild.currentSrc);
         total++;
 
@@ -95,15 +110,19 @@ function cardClick(cartaClicada) {
                     element[i].classList.remove('verifica');
                 }
                 cartasClicadas = [];
+                verificaCartasClicadas = 0;
             }
             else {
                 setTimeout(function() {
                 for (let i=0; i < element.length; i++) {
                     element[i].classList.remove('cartaSelecionada');
+                    element[i].classList.remove('show');
+                    element[i].classList.add('hide');
                     element[i].firstElementChild.classList.add('hidden');
                     times (2) (() => cartasPareadas.pop());
                     }
                 cartasClicadas = [];
+                verificaCartasClicadas = 0;
                 }, 1000);
             }
         }
